@@ -1,0 +1,16 @@
+<div>
+  <label for="name">{{ title }} {{ exRate }}</label>
+  <select
+    id="select"
+    class="form-control"
+    [(ngModel)]="cur"
+    (ngModelChange)="change($event)"
+    (ngModelChange)="calcExRate(data, BaseValue, ToValue)"
+  >
+    <option *ngFor="let cur of exchangeCurencies" [value]="cur">
+      {{ cur }}
+    </option>
+  </select>
+</div>
+<!-- (ngModelChange)="change($event)"
+    (ngModelChange)="calcExRate(data, baseCur, toCur)" -->
