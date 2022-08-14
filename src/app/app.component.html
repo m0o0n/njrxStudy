@@ -26,8 +26,6 @@
     margin-left: 5px;
   }
 
-  .course-item {
-  }
   .course-item-title {
     font-weight: 700;
     font-size: 18px;
@@ -62,7 +60,7 @@
                 class="course-item-value row justify-content-center"
                 data-value="USD"
               >
-                39
+                {{ FromBaseUsd }}
               </div>
             </div>
             <div class="course-item card card-body">
@@ -73,7 +71,7 @@
                 class="course-item-value row justify-content-center"
                 data-value="EUR"
               >
-                40
+                {{ FromBaseEur }}
               </div>
             </div>
             <div class="course-item card card-body">
@@ -84,7 +82,7 @@
                 class="course-item-value row justify-content-center"
                 data-value="BTC"
               >
-                22300
+                {{ FromBaseBtc }}
               </div>
             </div>
           </div>

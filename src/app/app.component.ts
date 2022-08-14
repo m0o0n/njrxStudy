@@ -1,6 +1,7 @@
+import { FromBase } from './../../../exchange_angular/src/app/models/fromBase';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, async, map } from 'rxjs';
+import { Observable, async, map, from } from 'rxjs';
 import {
   ChangeBaseValue,
   ChangeToValue,
@@ -24,8 +25,9 @@ export class AppComponent implements OnInit {
   exRate: any;
   findBase: any;
   findToBase: any;
-  giveCur = 'Отдаю';
-  getCur = 'Получаю';
+  FromBaseUsd: any;
+  FromBaseEur: any;
+  FromBaseBtc: any;
 
   BaseValue$ = this.store.select(BaseValueSelector);
   BaseValue: string = '';
@@ -37,16 +39,6 @@ export class AppComponent implements OnInit {
   ToValueFromObs: any = this.ToValue$.subscribe((val) => {
     this.ToValue = val;
   });
-
-  ChangeBaseValue(newValue: any) {
-    console.log(newValue);
-    this.store.dispatch(ChangeBaseValue({ value: newValue }));
-  }
-
-  ChangeToValue(newValue: any) {
-    console.log(newValue);
-    this.store.dispatch(ChangeToValue({ value: newValue }));
-  }
 
   calcExRate(data: any, baseCur: any, toCur: any) {
     this.findBase = data.find((e: any) => {
@@ -73,13 +65,6 @@ export class AppComponent implements OnInit {
     }
     this.exRate = this.findBase / this.findToBase;
     this.store.dispatch(ChangeExRate({ count: this.exRate }));
-    console.log(
-      this.exRate,
-      this.findBase,
-      this.findToBase,
-      this.BaseValue,
-      this.ToValue
-    );
   }
 
   ngOnInit(): void {
@@ -96,6 +81,13 @@ export class AppComponent implements OnInit {
         }
       });
       this.calcExRate(this.data, this.BaseValue, this.ToValue);
+
+      this.FromBaseUsd = this.FromBase.USD;
+      this.FromBaseUsd = Number(this.FromBaseUsd).toFixed(2);
+      this.FromBaseEur = this.FromBase.EUR;
+      this.FromBaseEur = Number(this.FromBaseEur).toFixed(2);
+      this.FromBaseBtc = this.FromBase.BTC;
+      this.FromBaseBtc = Number(this.FromBaseBtc).toFixed(0);
     });
   }
 

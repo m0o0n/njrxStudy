@@ -13,10 +13,9 @@ import { CurrencyRowComponent } from './currency-row/currency-row.component';
 import { AppEffects } from './app.effect';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CustomInputComponent } from './custom-input/custom-input.component';
 
 @NgModule({
-  declarations: [AppComponent, CurrencyRowComponent, CustomInputComponent],
+  declarations: [AppComponent, CurrencyRowComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

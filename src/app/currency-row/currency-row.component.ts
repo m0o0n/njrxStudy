@@ -20,15 +20,13 @@ import {
   interpolation: ['{{', '}}'],
 })
 export class CurrencyRowComponent implements OnInit {
-  @Input() title: string = '';
-
   @Input() exchangeCurencies: any = [];
   @Input() calcExRate: any;
   @Input() data: any;
   @Input() exRate: any;
 
-  baseInpVal: number = 0;
-  toInpVal: number = 0;
+  baseInpVal: any = 0;
+  toInpVal: any = 0;
 
   BaseValue$ = this.store.select(BaseValueSelector);
   BaseValue: string = '';
@@ -71,7 +69,7 @@ export class CurrencyRowComponent implements OnInit {
   ChangeBaseValue(newValue: any) {
     this.calcExRate(this.data, this.BaseValue, this.ToValue);
     this.store.dispatch(ChangeBaseValue({ value: newValue }));
-    this.toInpVal = this.Amount * this.exRate;
+    this.toInpVal = (this.Amount * this.exRate).toFixed(2);
     this.baseInpVal = this.Amount;
   }
 
@@ -79,20 +77,18 @@ export class CurrencyRowComponent implements OnInit {
     this.calcExRate(this.data, this.BaseValue, this.ToValue);
     this.store.dispatch(ChangeToValue({ value: newValue }));
     this.toInpVal = this.Amount;
-    this.baseInpVal = this.Amount / this.exRate;
+    this.baseInpVal = (this.Amount / this.exRate).toFixed(2);
   }
 
   ChangeBaseInputValue(newValue: any) {
-    console.log(newValue.target.value, 'changed');
     this.store.dispatch(ChangeBaseInputValue({ count: newValue.target.value }));
-    this.toInpVal = newValue.target.value * this.ExRate;
+    this.toInpVal = (newValue.target.value * this.ExRate).toFixed(2);
     this.baseInpVal = newValue.target.value;
   }
   ChangeToInputValue(newValue: any) {
-    console.log(newValue.target.value, 'changed');
     this.store.dispatch(ChangeToInputValue({ count: newValue.target.value }));
     this.toInpVal = newValue.target.value;
-    this.baseInpVal = newValue.target.value / this.ExRate;
+    this.baseInpVal = (newValue.target.value / this.ExRate).toFixed(2);
   }
 
   ngOnInit(): void {}
