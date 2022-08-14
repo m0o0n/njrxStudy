@@ -89,46 +89,13 @@
             </div>
           </div>
 
-          <div class="row mb-1">
-            <app-currency-row
-              [title]="giveCur"
-              [cur]="BaseValue"
-              [exchangeCurencies]="exchangeCurencies"
-              [calcExRate]="calcExRate"
-              [data]="data"
-              [baseCur]="BaseValue"
-              [toCur]="ToValue"
-              [change]="ChangeBaseValue"
-              [exRate]="exRate"
-              class="col"
-            ></app-currency-row>
-            <app-currency-row
-              [title]="getCur"
-              [cur]="ToValue"
-              [exchangeCurencies]="exchangeCurencies"
-              [calcExRate]="calcExRate"
-              [data]="data"
-              [baseCur]="BaseValue"
-              [toCur]="ToValue"
-              [change]="ChangeToValue"
-              [exRate]="exRate"
-              class="col"
-            ></app-currency-row>
-          </div>
-
-          <div class="row">
-            <app-custom-input class="col"></app-custom-input>
-            <!-- <CustomInput 
-              onChange={handleChangeFromAmount}
-              amount={fromAmount} 
-            />
-            
-            <CustomInput
-            onChange={handleChangeToAmount}
-            amount={toAmount} 
-            /> -->
-            <app-custom-input class="col"></app-custom-input>
-          </div>
+          <app-currency-row
+            [exchangeCurencies]="exchangeCurencies"
+            [calcExRate]="calcExRate"
+            [data]="data"
+            [exRate]="exRate"
+            class="col"
+          ></app-currency-row>
         </form>
       </div>
     </div>

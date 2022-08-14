@@ -6,6 +6,7 @@ import {
   ChangeToValue,
   BaseValueSelector,
   ToValueSelector,
+  ChangeExRate,
 } from './reducers/exchange.reducer';
 import { DataService } from './services/data.service';
 import { IData } from './reducers/data.model';
@@ -71,6 +72,7 @@ export class AppComponent implements OnInit {
       this.findBase = this.findBase.sale;
     }
     this.exRate = this.findBase / this.findToBase;
+    this.store.dispatch(ChangeExRate({ count: this.exRate }));
     console.log(
       this.exRate,
       this.findBase,

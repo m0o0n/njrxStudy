@@ -1,16 +1,55 @@
-<div>
-  <label for="name">{{ title }} {{ exRate }}</label>
-  <select
-    id="select"
-    class="form-control"
-    [(ngModel)]="cur"
-    (ngModelChange)="change($event)"
-    (ngModelChange)="calcExRate(data, BaseValue, ToValue)"
-  >
-    <option *ngFor="let cur of exchangeCurencies" [value]="cur">
-      {{ cur }}
-    </option>
-  </select>
+<div class="row mb-1">
+  <div class="col">
+    <label for="name">Отдаю</label>
+    <select
+      id="select"
+      class="form-control"
+      [(ngModel)]="BaseValue"
+      (ngModelChange)="ChangeBaseValue($event)"
+      (ngModelChange)="calcExRate(data, BaseValue, ToValue)"
+    >
+      <option *ngFor="let cur of exchangeCurencies" [value]="cur">
+        {{ cur }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col">
+    <label for="name">Получаю</label>
+    <select
+      id="select"
+      class="form-control"
+      [(ngModel)]="ToValue"
+      (ngModelChange)="ChangeToValue($event)"
+      (ngModelChange)="calcExRate(data, BaseValue, ToValue)"
+    >
+      <option *ngFor="let cur of exchangeCurencies" [value]="cur">
+        {{ cur }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <input
+      id="result"
+      type="number"
+      class="form-control"
+      (input)="ChangeBaseInputValue($event)"
+      [(ngModel)]="baseInpVal"
+    />
+  </div>
+
+  <div class="col">
+    <input
+      id="result"
+      type="number"
+      class="form-control"
+      (input)="ChangeToInputValue($event)"
+      [(ngModel)]="toInpVal"
+    />
+  </div>
 </div>
 <!-- (ngModelChange)="change($event)"
     (ngModelChange)="calcExRate(data, baseCur, toCur)" -->
